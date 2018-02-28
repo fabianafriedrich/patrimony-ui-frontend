@@ -1,0 +1,48 @@
+<form #frm="ngForm" (ngSubmit)="add(frm)">
+  <div class="ui-g">
+
+    <div class="ui-g-12">
+      <h1> Patrimony System</h1>
+    </div>
+
+    <div class="ui-g-6 ui-fluid">
+      <label>Bar Code </label>
+      <p-inputMask name="barCode" mask="aa9999" ngModel [required]="true"></p-inputMask>
+    </div>
+
+    <div class="ui-g-6 ui-fluid">
+      <label>Date Acquisition </label>
+      <p-calendar name="dataAcquisition" dateFormat="dd/mm/yy" ngModel [required]="true" ></p-calendar>
+    </div>
+
+    <div class="ui-g-12 ui-fluid">
+      <label> Description </label>
+      <input pInputText name="description" ngModel [required]="true">
+
+    </div>
+
+    <div class="ui-g-12">
+      <button pButton type="submit" label="Submit"
+      [disabled]="frm.invalid"></button>
+    </div>
+
+  </div>
+
+  <div class="ui-g">
+    <div class="ui-g-12">
+
+      <p-dataTable [value]="itens">
+        <p-column field="barCode" header="Bar Code" ></p-column>
+        <p-column field="description" header="Description"></p-column>
+        <p-column header="Date Acquisition">
+          <ng-template pTemplate="body" let-item="rowData">
+            {{item.dataAcquisition | date:'dd/MM/yyyy'}}
+          </ng-template>
+        </p-column>
+
+      </p-dataTable>
+
+    </div>
+
+  </div>
+</form>
